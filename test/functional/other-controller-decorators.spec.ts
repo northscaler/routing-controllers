@@ -27,7 +27,6 @@ describe("other controller decorators", () => {
 
             constructor(action: Action) {
                 super(404, `Question was not found!`);
-                Object.setPrototypeOf(this, QuestionNotFoundError.prototype);
             }
 
         }

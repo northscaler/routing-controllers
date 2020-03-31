@@ -23,6 +23,39 @@ describe("using Error subclasses should be possible,", () => {
             expect(error).to.be.instanceOf(Error);
         });
     });
+    describe("Vanilla Error Subclasses", () => {
+        it("should work with Error", function () {
+            class Sub extends Error {
+                constructor(m: string) {
+                    super(m);
+                }
+            }
+
+            class SubSub extends Sub {
+                constructor(m: string) {
+                    super(m);
+                }
+            }
+
+            const e = new Error("e");
+
+            assert(e instanceof Error);
+            assert(!(e instanceof Sub));
+            assert(!(e instanceof SubSub));
+
+            const s = new Sub("s");
+
+            assert(s instanceof Error);
+            assert(s instanceof Sub);
+            assert(!(s instanceof SubSub));
+
+            const ss = new SubSub("ss");
+
+            assert(ss instanceof Error);
+            assert(ss instanceof Sub);
+            assert(ss instanceof SubSub);
+        });
+    });
     describe("User-defined Error Subclasses", () => {
         it("should be instance of HttpError and Error", () => {
             class Sub extends HttpError {

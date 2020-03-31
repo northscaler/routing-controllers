@@ -61,7 +61,6 @@ describe("express error handling", () => {
 
             constructor(httpCode: number, publicMsg?: string, privateMsg?: string) {
                 super(httpCode);
-                Object.setPrototypeOf(this, ToJsonError.prototype);
                 this.publicData = publicMsg || "public";
                 this.secretData = privateMsg || "secret";
             }
